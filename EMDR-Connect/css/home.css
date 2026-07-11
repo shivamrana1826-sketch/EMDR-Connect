@@ -1,0 +1,51 @@
+.hero-image{
+    text-align:center;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:500px;
+}
+
+.about-home{
+    background:#fff;
+}
+
+.services{
+    background:#f8fbff;
+}
+
+.doctors{
+    background:#fff;
+}
+
+.testimonial{
+    background:#f8fbff;
+}
+
+.card{
+    border:1px solid #e8eef8;
+}
+
+.card:hover{
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+.hero-content h1 span{
+    color:#0d6efd;
+}
+
+.hero-content h4{
+    font-size:20px;
+    font-weight:600;
+}
+
+.hero-buttons{
+    margin-top:25px;
+}
+
+.service-box .card i{
+    width:70px;
+    height:70px;
+    line-height:
+}
