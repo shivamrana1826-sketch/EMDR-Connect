@@ -4,21 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard | EMDR Connect</title>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/responsive.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body>
 
 <header>
+
     <div class="container navbar">
 
         <div class="logo">
-            <a href="index.html"><i class="fa-solid fa-heart-pulse"></i> EMDR Connect</a><div class="dashboard-card">
+            <a href="index.html">
+                <i class="fa-solid fa-heart-pulse"></i> EMDR Connect
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+                <li><a href="consultation.html">Consultation</a></li>
+                <li><a href="prescription.html">Prescription</a></li>
+                <li><a href="doctor-dashboard.html" class="active">Dashboard</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+<section class="dashboard">
+
+    <div class="container">
+
+        <div class="dashboard-header">
+
+            <div>
+                <h2>Doctor Dashboard</h2>
+                <p>Welcome, Dr. Raj Patil</p>
+            </div>
+
+            <a href="appointment.html" class="primary-btn">
+                View Appointments
+            </a>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+            <aside class="sidebar">
+
+                <h3>Doctor Menu</h3>
+
+                <ul>
+                    <li><a href="doctor-dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="appointment.html">Appointments</a></li>
+                    <li><a href="consultation.html">Consultations</a></li>
+                    <li><a href="prescription.html">Prescriptions</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+
+            </aside>
+
+            <div class="dashboard-content">
+
+                <div class="stats">
+
+                    <div class="stat-card">
+                        <i class="fa-solid fa-users"></i>
+                        <h3>150</h3>
+                        <p>Total Patients</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <h3>18</h3>
+                        <p>Today's Appointments</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <i class="fa-solid fa-video"></i>
+                        <h3>12</h3>
+                        <p>Consultations</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <i class="fa-solid fa-file-prescription"></i>
+                        <h3>85</h3>
+                        <p>Prescriptions</p>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <h3>Doctor Profile</h3>
+
+                    <div class="profile">
+
+                        <img src="images/doctor1.jpg" alt="Doctor">
+
+                        <div class="profile-info">
+
+                            <h4>Dr. Raj Patil</h4>
+
+                            <p>Senior EMDR Therapist</p>
+
+                            <p>Email: sarah@emdrconnect.com</p>
+
+                            <span class="status active-status">
+                                Available
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="dashboard-card">
 
                     <h3>Today's Appointments</h3>
 
@@ -27,13 +140,15 @@
                         <table>
 
                             <thead>
+
                                 <tr>
-                                    <th>Patient</th>
+                                    <th>Patient Name</th>
                                     <th>Date</th>
                                     <th>Time</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
+
                             </thead>
 
                             <tbody>
@@ -42,32 +157,80 @@
                                     <td>John Doe</td>
                                     <td>15 July 2026</td>
                                     <td>10:00 AM</td>
-                                    <td><span class="status active-status">Confirmed</span></td>
-                                    <td><button class="action-btn">View</button></td>
+                                    <td>
+                                        <span class="status active-status">
+                                            Confirmed
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn">
+                                            View
+                                        </button>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td>Rahul Sharma</td>
                                     <td>15 July 2026</td>
                                     <td>11:30 AM</td>
-                                    <td><span class="status pending-status">Pending</span></td>
-                                    <td><button class="action-btn">View</button></td>
+                                    <td>
+                                        <span class="status pending-status">
+                                            Pending
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn">
+                                            View
+                                        </button>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td>Priya Verma</td>
                                     <td>16 July 2026</td>
-                                    <td>2:00 PM</td>
-                                    <td><span class="status completed-status">Completed</span></td>
-                                    <td><button class="action-btn">View</button></td>
+                                    <td>02:00 PM</td>
+                                    <td>
+                                        <span class="status completed-status">
+                                            Completed
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn">
+                                            View
+                                        </button>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td>Amit Kumar</td>
                                     <td>17 July 2026</td>
-                                    <td>9:30 AM</td>
-                                    <td><span class="status active-status">Confirmed</span></td>
-                                    <td><button class="action-btn">View</button></td>
+                                    <td>09:30 AM</td>
+                                    <td>
+                                        <span class="status active-status">
+                                            Confirmed
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn">
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Neha Singh</td>
+                                    <td>18 July 2026</td>
+                                    <td>01:00 PM</td>
+                                    <td>
+                                        <span class="status pending-status">
+                                            Pending
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn">
+                                            View
+                                        </button>
+                                    </td>
                                 </tr>
 
                             </tbody>
@@ -85,37 +248,50 @@
     </div>
 
 </section>
-
 <footer>
 
     <div class="container footer-content">
 
         <div>
+
             <h3>EMDR Connect</h3>
-            <p>A secure EMDR Therapy Management System for therapists and patients.</p>
+
+            <p>
+                A secure EMDR Therapy Management System for
+                therapists and patients.
+            </p>
+
         </div>
 
         <div>
+
             <h3>Quick Links</h3>
+
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="appointment.html">Appointment</a></li>
                 <li><a href="consultation.html">Consultation</a></li>
                 <li><a href="prescription.html">Prescription</a></li>
             </ul>
+
         </div>
 
         <div>
+
             <h3>Contact</h3>
+
             <p>New Delhi, India</p>
             <p>+91 9876543210</p>
             <p>support@emdrconnect.com</p>
+
         </div>
 
     </div>
 
     <div class="footer-bottom">
+
         <p>© 2026 EMDR Connect. All Rights Reserved.</p>
+
     </div>
 
 </footer>

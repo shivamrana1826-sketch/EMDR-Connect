@@ -6,20 +6,56 @@ if(consultation){
 
         e.preventDefault();
 
-        const patient=consultation.querySelector('input[type="text"]').value.trim();
-        const doctor=consultation.querySelector("select").value;
-        const date=consultation.querySelector('input[type="date"]').value;
-        const time=consultation.querySelector('input[type="time"]').value;
-        const notes=consultation.querySelector("textarea").value.trim();
-
-        if(patient===""||doctor===""||date===""||time===""||notes===""){
-            alert("Please fill all the fields.");
-            return;
-        }
-
-        alert("Consultation details saved successfully.");
+        alert("Consultation saved successfully.");
 
         consultation.reset();
+
+    });
+
+}
+
+const video=document.getElementById("video");
+const start=document.getElementById("startCamera");
+const stop=document.getElementById("stopCamera");
+
+let stream;
+
+if(start){
+
+    start.addEventListener("click",async function(){
+
+        try{
+
+            stream=await navigator.mediaDevices.getUserMedia({
+                video:true,
+                audio:false
+            });
+
+            video.srcObject=stream;
+
+        }catch(error){
+
+            alert("Camera permission denied.");
+
+        }
+
+    });
+
+}
+
+if(stop){
+
+    stop.addEventListener("click",function(){
+
+        if(stream){
+
+            stream.getTracks().forEach(function(track){
+                track.stop();
+            });
+
+            video.srcObject=null;
+
+        }
 
     });
 

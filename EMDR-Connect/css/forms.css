@@ -126,3 +126,17 @@
     }
 
 }
+.camera-box{
+    margin-top:40px;
+    text-align:center;
+}
+
+.camera-box video{
+    border:3px solid #0d6efd;
+    border-radius:10px;
+    background:#000;
+}
+
+.camera-box button{
+    margin:10px;
+}
