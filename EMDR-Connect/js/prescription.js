@@ -1,32 +1,117 @@
-const prescription=document.getElementById("prescription-form");
+const prescriptionForm = document.getElementById("prescription-form");
 
-if(prescription){
+const loggedInUserEmail =
+    localStorage.getItem("loggedInUserEmail");
 
-    prescription.addEventListener("submit",function(e){
+if (!loggedInUserEmail) {
+
+    alert("Please login to access prescriptions.");
+
+    window.location.href = "login.html";
+
+}
+
+if (prescriptionForm && loggedInUserEmail) {
+
+    prescriptionForm.addEventListener("submit", async function (e) {
 
         e.preventDefault();
+        e.stopImmediatePropagation();
 
-        const patient=prescription.querySelector('input[type="text"]').value.trim();
-        const doctor=prescription.querySelector("select").value;
-        const date=prescription.querySelectorAll('input[type="date"]')[0].value;
-        const followUp=prescription.querySelectorAll('input[type="date"]')[1].value;
-        const medicines=prescription.querySelectorAll("textarea")[0].value.trim();
-        const instructions=prescription.querySelectorAll("textarea")[1].value.trim();
+        const textInputs =
+            prescriptionForm.querySelectorAll('input[type="text"]');
 
-        if(patient===""||doctor===""||date===""||medicines===""||instructions===""){
+        const patientName =
+            textInputs[0].value.trim();
+
+        const dosage =
+            textInputs[1].value.trim();
+
+        const doctorName =
+            prescriptionForm.querySelector("select").value;
+
+        const prescriptionDate =
+            prescriptionForm.querySelector('input[type="date"]').value;
+
+        const textareas =
+            prescriptionForm.querySelectorAll("textarea");
+
+        const medicine =
+            textareas[0].value.trim();
+
+        const instructions =
+            textareas[1].value.trim();
+
+        if (
+            patientName === "" ||
+            doctorName === "" ||
+            prescriptionDate === "" ||
+            dosage === "" ||
+            medicine === "" ||
+            instructions === ""
+        ) {
+
             alert("Please fill all the required fields.");
             return;
+
         }
 
-        alert(
-            "Prescription Saved Successfully.\n\n"+
-            "Patient : "+patient+
-            "\nDoctor : "+doctor+
-            "\nDate : "+date+
-            "\nFollow-up : "+(followUp||"Not Selected")
-        );
+        const prescription = {
 
-        prescription.reset();
+            patientName: patientName,
+
+            email: loggedInUserEmail,
+
+            doctorName: doctorName,
+
+            medicine: medicine,
+
+            dosage: dosage,
+
+            instructions: instructions,
+
+            prescriptionDate: prescriptionDate
+
+        };
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:8080/api/prescriptions",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(prescription)
+                }
+            );
+
+            if (response.ok) {
+
+                const result = await response.json();
+
+                console.log("Prescription saved:", result);
+
+                alert("Prescription saved successfully.");
+
+                prescriptionForm.reset();
+
+            } else {
+
+                alert("Prescription could not be saved.");
+
+            }
+
+        } catch (error) {
+
+            console.error("Prescription error:", error);
+
+            alert("Cannot connect to backend server.");
+
+        }
 
     });
 

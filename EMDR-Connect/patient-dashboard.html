@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Patient Dashboard | EMDR Connect</title>
 
     <link rel="stylesheet" href="css/style.css">
@@ -12,10 +14,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body>
 
 <header>
@@ -23,25 +28,42 @@
     <div class="container navbar">
 
         <div class="logo">
+
             <a href="index.html">
                 <i class="fa-solid fa-heart-pulse"></i>
                 EMDR Connect
             </a>
+
         </div>
 
         <nav>
 
             <ul>
 
-                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
 
-                <li><a href="appointment.html">Appointment</a></li>
+                <li>
+                    <a href="appointment.html">Appointment</a>
+                </li>
 
-                <li><a href="consultation.html">Consultation</a></li>
+                <li>
+                    <a href="consultation.html">Consultation</a>
+                </li>
 
-                <li><a href="prescription.html">Prescription</a></li>
+                <li>
+                    <a href="prescription.html">Prescription</a>
+                </li>
 
-                <li><a href="patient-dashboard.html" class="active">Dashboard</a></li>
+                <li>
+                    <a href="patient-dashboard.html" class="active">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                     <a href="#" id="logout-btn">Logout</a>
+                </li>
 
             </ul>
 
@@ -51,6 +73,7 @@
 
 </header>
 
+
 <section class="dashboard">
 
     <div class="container">
@@ -59,87 +82,106 @@
 
             <div>
 
-                <h2<div class="dashboard-card">
+                <h2>Patient Dashboard</h2>
 
-                    <h3>Upcoming Appointments</h3>
+                <p>
+                    View your appointments, prescriptions and consultations.
+                </p>
 
-                    <div class="table-responsive">
+            </div>
 
-                        <table>
+        </div>
 
-                            <thead>
 
-                                <tr>
+        <!-- Appointments -->
 
-                                    <th>Date</th>
+        <div class="dashboard-card">
 
-                                    <th>Doctor</th>
+            <h3>Upcoming Appointments</h3>
 
-                                    <th>Time</th>
+            <div class="table-responsive">
 
-                                    <th>Status</th>
+                <table>
 
-                                </tr>
+                    <thead>
 
-                            </thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Doctor</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
 
-                            <tbody>
+                    </thead>
 
-                                <tr>
+                    <tbody id="appointment-table-body">
+                    </tbody>
 
-                                    <td>15 July 2026</td>
+                </table>
 
-                                    <td>Dr. Raj Patil</td>
+            </div>
 
-                                    <td>10:00 AM</td>
+        </div>
 
-                                    <td>
-                                        <span class="status active-status">
-                                            Confirmed
-                                        </span>
-                                    </td>
 
-                                </tr>
+        <!-- Prescriptions -->
 
-                                <tr>
+        <div class="dashboard-card">
 
-                                    <td>22 July 2026</td>
+            <h3>My Prescriptions</h3>
 
-                                    <td>Dr. Michael Smith</td>
+            <div class="table-responsive">
 
-                                    <td>02:30 PM</td>
+                <table>
 
-                                    <td>
-                                        <span class="status pending-status">
-                                            Pending
-                                        </span>
-                                    </td>
+                    <thead>
 
-                                </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Doctor</th>
+                            <th>Medicine</th>
+                            <th>Dosage</th>
+                            <th>Instructions</th>
+                        </tr>
 
-                                <tr>
+                    </thead>
 
-                                    <td>30 July 2026</td>
+                    <tbody id="prescription-table-body">
+                    </tbody>
 
-                                    <td>Dr. Emily Davis</td>
+                </table>
 
-                                    <td>11:30 AM</td>
+            </div>
 
-                                    <td>
-                                        <span class="status completed-status">
-                                            Completed
-                                        </span>
-                                    </td>
+        </div>
 
-                                </tr>
 
-                            </tbody>
+        <!-- Consultations -->
 
-                        </table>
+        <div class="dashboard-card">
 
-                    </div>
+            <h3>My Consultations</h3>
 
-                </div>
+            <div class="table-responsive">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Date</th>
+                            <th>Doctor</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="consultation-table-body">
+                    </tbody>
+
+                </table>
 
             </div>
 
@@ -148,6 +190,7 @@
     </div>
 
 </section>
+
 
 <footer>
 
@@ -163,9 +206,51 @@
             </p>
 
         </div>
-        </footer>
+
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+                <li><a href="consultation.html">Consultation</a></li>
+                <li><a href="prescription.html">Prescription</a></li>
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>Contact</h3>
+
+            <p>New Delhi, India</p>
+
+            <p>+91 9876543210</p>
+
+            <p>support@emdrconnect.com</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 EMDR Connect. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
 
 <script src="js/main.js"></script>
+<script src="js/patient-dashboard.js"></script>
 
 </body>
+
 </html>

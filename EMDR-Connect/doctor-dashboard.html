@@ -71,7 +71,7 @@
                     <li><a href="appointment.html">Appointments</a></li>
                     <li><a href="consultation.html">Consultations</a></li>
                     <li><a href="prescription.html">Prescriptions</a></li>
-                    <li><a href="login.html">Logout</a></li>
+                    <a href="#" id="logout-btn">Logout</a>
                 </ul>
 
             </aside>
@@ -82,25 +82,25 @@
 
                     <div class="stat-card">
                         <i class="fa-solid fa-users"></i>
-                        <h3>150</h3>
+                        <h3 id="total-patients">0</h3>
                         <p>Total Patients</p>
                     </div>
 
                     <div class="stat-card">
                         <i class="fa-solid fa-calendar-check"></i>
-                        <h3>18</h3>
+                        <h3 id="total-appointments">0</h3>
                         <p>Today's Appointments</p>
                     </div>
 
                     <div class="stat-card">
                         <i class="fa-solid fa-video"></i>
-                        <h3>12</h3>
+                        <h3 id="total-consultations">0</h3>
                         <p>Consultations</p>
                     </div>
 
                     <div class="stat-card">
                         <i class="fa-solid fa-file-prescription"></i>
-                        <h3>85</h3>
+                        <h3 id="total-prescriptions">0</h3>
                         <p>Prescriptions</p>
                     </div>
 
@@ -120,7 +120,7 @@
 
                             <p>Senior EMDR Therapist</p>
 
-                            <p>Email: sarah@emdrconnect.com</p>
+                            <p>Email: raj@emdrconnect.com</p>
 
                             <span class="status active-status">
                                 Available
@@ -151,87 +151,7 @@
 
                             </thead>
 
-                            <tbody>
-
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td>15 July 2026</td>
-                                    <td>10:00 AM</td>
-                                    <td>
-                                        <span class="status active-status">
-                                            Confirmed
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <button class="action-btn">
-                                            View
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Rahul Sharma</td>
-                                    <td>15 July 2026</td>
-                                    <td>11:30 AM</td>
-                                    <td>
-                                        <span class="status pending-status">
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <button class="action-btn">
-                                            View
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Priya Verma</td>
-                                    <td>16 July 2026</td>
-                                    <td>02:00 PM</td>
-                                    <td>
-                                        <span class="status completed-status">
-                                            Completed
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <button class="action-btn">
-                                            View
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Amit Kumar</td>
-                                    <td>17 July 2026</td>
-                                    <td>09:30 AM</td>
-                                    <td>
-                                        <span class="status active-status">
-                                            Confirmed
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <button class="action-btn">
-                                            View
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Neha Singh</td>
-                                    <td>18 July 2026</td>
-                                    <td>01:00 PM</td>
-                                    <td>
-                                        <span class="status pending-status">
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <button class="action-btn">
-                                            View
-                                        </button>
-                                    </td>
-                                </tr>
+                            <tbody id="doctor-appointment-table-body">
 
                             </tbody>
 

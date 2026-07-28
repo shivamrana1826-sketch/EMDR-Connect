@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultation | EMDR Connect</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,9 +97,9 @@
                         <select required>
                             <option value="">Select Doctor</option>
                             <option>Dr. Raj Patil</option>
-                            <option>Dr. Michael Smith</option>
-                            <option>Dr. Emily Davis</option>
-                            <option>Dr. James Wilson</option>
+                            <option>Dr. Rekha Gupta</option>
+                            <option>Dr. Arjun Mehta</option>
+                            <option>Dr. Shivam Rana</option>
                         </select>
                     </div>
 
@@ -174,21 +174,112 @@
     </div>
 
 </section>
-<div class="camera-box">
-    <h3>Video Consultation</h3>
+<section class="video-consultation-section">
 
-    <video id="video" width="100%" height="350" autoplay playsinline></video>
+    <div class="container">
 
-    <br><br>
+        <div class="video-consultation-card">
 
-    <button type="button" id="startCamera" class="primary-btn">
-        Start Consultation
-    </button>
+            <div class="video-header">
 
-    <button type="button" id="stopCamera" class="primary-btn">
-        Stop Camera
-    </button>
-</div>
+                <div>
+                    <span class="video-label">
+                        <i class="fa-solid fa-video"></i>
+                        Online Session
+                    </span>
+
+                    <h2>Video Consultation</h2>
+
+                    <p>
+                        Start a secure video session with your EMDR specialist.
+                    </p>
+                </div>
+
+                <div class="camera-status">
+                    <span class="status-dot"></span>
+                    Camera Ready
+                </div>
+
+            </div>
+
+            <div class="video-screen">
+
+                <video
+                    id="video"
+                    autoplay
+                    playsinline>
+                </video>
+
+                <div class="video-placeholder">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <h3>Ready for Consultation</h3>
+                    <p>Click Start Consultation to enable your camera.</p>
+                </div>
+
+                <div class="video-badge">
+                    <i class="fa-solid fa-lock"></i>
+                    Secure Session
+                </div>
+
+            </div>
+
+            <div class="video-controls">
+
+                <button
+                    type="button"
+                    id="startCamera"
+                    class="start-consultation-btn">
+
+                    <i class="fa-solid fa-video"></i>
+                    Start Consultation
+
+                </button>
+
+                <button
+                    type="button"
+                    id="stopCamera"
+                    class="stop-consultation-btn">
+
+                    <i class="fa-solid fa-video-slash"></i>
+                    Stop Camera
+
+                </button>
+
+            </div>
+
+            <div class="video-info">
+
+                <div>
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Secure Consultation
+                    </span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-camera"></i>
+
+                    <span>
+                        Camera Access Required
+                    </span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <span>
+                        EMDR Specialist
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 <footer>
 
