@@ -25,6 +25,12 @@ public class User {
     @Column(nullable = false)
     private String role;
 
+    private String specialization;
+
+    private String experience;
+
+    private String photo;
+
     public User() {
     }
 
@@ -74,5 +80,29 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
