@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation | EMDR Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+
+    <div class="container navbar">
+
+        <div class="logo">
+            <a href="index.html"><i class="fa-solid fa-heart-pulse"></i> EMDR Connect</a>
+        </div>
+
+        <nav>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="consultation.html" class="active">Consultation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+        </nav>
+
+        <div class="nav-btn">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+
+    </div>
+
+</header>
+
+<section class="hero">
+
+    <div class="container hero-section">
+
+        <div class="hero-content">
+
+            <h4>Online Consultation</h4>
+
+            <h1>Consult With Our EMDR Specialists</h1>
+
+            <p>
+                Schedule and manage your therapy consultation with experienced
+                EMDR specialists. Record session details and track your
+                treatment progress easily.
+            </p>
+
+        </div>
+
+        <div class="hero-image">
+            <img src="images/consultation.png" alt="Consultation">
+        </div>
+
+    </div>
+
+</section>
+
+<section class="form-section">
+
+    <div class="container">
+
+        <div class="form-container">
+
+            <div class="heading">
+
+                <h2>Consultation Form</h2>
+
+                <p>Enter the consultation details below.</p>
+
+            </div>
+
+            <form id="consultation-form">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Patient Name</label>
+                        <input type="text" placeholder="Enter patient name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Doctor Name</label>
+                        <select required>
+                            <option value="">Select Doctor</option>
+                            <option>Dr. Raj Patil</option>
+                            <option>Dr. Rekha Gupta</option>
+                            <option>Dr. Arjun Mehta</option>
+                            <option>Dr. Shivam Rana</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Consultation Date</label>
+                        <input type="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Consultation Time</label>
+                        <input type="time" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Consultation Notes</label>
+                    <textarea rows="5" placeholder="Enter consultation details..." required></textarea>
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Save Consultation
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section><section>
+
+    <div class="container">
+
+        <div class="heading">
+
+            <h2>Consultation Benefits</h2>
+
+            <p>
+                Our consultation process helps therapists and patients maintain
+                accurate treatment records and improve therapy outcomes.
+            </p>
+
+        </div>
+
+        <div class="service-box">
+
+            <div class="card">
+                <i class="fa-solid fa-notes-medical"></i>
+                <h3>Session Records</h3>
+                <p>Maintain complete consultation records for future reference.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h3>Expert Guidance</h3>
+                <p>Receive professional advice from experienced EMDR therapists.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Progress Tracking</h3>
+                <p>Monitor patient recovery and treatment progress after every session.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="video-consultation-section">
+
+    <div class="container">
+
+        <div class="video-consultation-card">
+
+            <div class="video-header">
+
+                <div>
+                    <span class="video-label">
+                        <i class="fa-solid fa-video"></i>
+                        Online Session
+                    </span>
+
+                    <h2>Video Consultation</h2>
+
+                    <p>
+                        Start a secure video session with your EMDR specialist.
+                    </p>
+                </div>
+
+                <div class="camera-status">
+                    <span class="status-dot"></span>
+                    Camera Ready
+                </div>
+
+            </div>
+
+            <div class="video-screen">
+
+                <video
+                    id="video"
+                    autoplay
+                    playsinline>
+                </video>
+
+                <div class="video-placeholder">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <h3>Ready for Consultation</h3>
+                    <p>Click Start Consultation to enable your camera.</p>
+                </div>
+
+                <div class="video-badge">
+                    <i class="fa-solid fa-lock"></i>
+                    Secure Session
+                </div>
+
+            </div>
+
+            <div class="video-controls">
+
+                <button
+                    type="button"
+                    id="startCamera"
+                    class="start-consultation-btn">
+
+                    <i class="fa-solid fa-video"></i>
+                    Start Consultation
+
+                </button>
+
+                <button
+                    type="button"
+                    id="stopCamera"
+                    class="stop-consultation-btn">
+
+                    <i class="fa-solid fa-video-slash"></i>
+                    Stop Camera
+
+                </button>
+
+            </div>
+
+            <div class="video-info">
+
+                <div>
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Secure Consultation
+                    </span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-camera"></i>
+
+                    <span>
+                        Camera Access Required
+                    </span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <span>
+                        EMDR Specialist
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+            <h3>EMDR Connect</h3>
+            <p>A secure EMDR Therapy Management System for therapists and patients.</p>
+        </div>
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h3>Contact</h3>
+
+            <p>New Delhi, India</p>
+            <p>+91 9876543210</p>
+            <p>support@emdrconnect.com</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 EMDR Connect. All Rights Reserved.</p>
+    </div>
+
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/consultation.js"></script>
+
+</body>
+</html>
