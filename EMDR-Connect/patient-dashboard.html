@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | EMDR Connect</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        .notification-card {
+            background: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .notification-card.unread {
+            background: #e7f1ff;
+            border-left-color: #0d6efd;
+            font-weight: 500;
+        }
+        .notification-card.confirmed {
+            border-left-color: #198754;
+            background: #e8f5e9;
+        }
+        .notification-card.rejected {
+            border-left-color: #dc3545;
+            background: #ffebee;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-confirmed {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+        .status-completed {
+            background-color: #cff4fc;
+            color: #055160;
+        }
+        .btn-join {
+            background-color: #0d6efd;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn-join:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container navbar">
+        <div class="logo">
+            <a href="index.html">
+                <i class="fa-solid fa-heart-pulse"></i> EMDR Connect
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="appointment.html">Book Appointment</a></li>
+                <li><a href="patient-dashboard.html" class="active">My Dashboard</a></li>
+                <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="dashboard">
+    <div class="container">
+        <div class="dashboard-header">
+            <div>
+                <h2>Welcome, <span id="patient-name-display">Patient</span></h2>
+                <p id="patient-email-display" style="color: #666;">View your appointments, notifications, prescriptions, and consultations.</p>
+            </div>
+            <a href="appointment.html" class="primary-btn">
+                <i class="fa-solid fa-calendar-plus"></i> Book New Appointment
+            </a>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="stats" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 30px;">
+            <div class="stat-card">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3 id="stat-total-appointments">0</h3>
+                <p>Total Appointments</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-circle-check"></i>
+                <h3 id="stat-confirmed-appointments">0</h3>
+                <p>Confirmed Sessions</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-file-prescription"></i>
+                <h3 id="stat-prescriptions">0</h3>
+                <p>My Prescriptions</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-bell"></i>
+                <h3 id="stat-notifications">0</h3>
+                <p>Notifications</p>
+            </div>
+        </div>
+
+        <!-- Real-Time Notifications -->
+        <div class="dashboard-card" style="margin-bottom: 30px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h3><i class="fa-solid fa-bell"></i> Notifications & Status Updates</h3>
+                <button id="mark-all-read-btn" class="primary-btn" style="padding: 6px 14px; font-size: 13px; background:#6c757d; border-color:#6c757d;">
+                    Mark All as Read
+                </button>
+            </div>
+            <div id="notifications-container">
+                <p style="color: #888; text-align: center; padding: 15px;">No notifications yet.</p>
+            </div>
+        </div>
+
+        <!-- My Appointments -->
+        <div class="dashboard-card" style="margin-bottom: 30px;">
+            <h3><i class="fa-solid fa-calendar-days"></i> My Appointments</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Doctor</th>
+                            <th>Time</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Consultation Access</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointment-table-body">
+                        <tr>
+                            <td colspan="6" class="text-center">Loading appointments...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- My Prescriptions -->
+        <div class="dashboard-card" style="margin-bottom: 30px;">
+            <h3><i class="fa-solid fa-file-prescription"></i> My Prescriptions</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Prescribed By</th>
+                            <th>Medicine</th>
+                            <th>Dosage</th>
+                            <th>Instructions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prescription-table-body">
+                        <tr>
+                            <td colspan="5" class="text-center">Loading prescriptions...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- My Consultations -->
+        <div class="dashboard-card">
+            <h3><i class="fa-solid fa-video"></i> My Consultation Records</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Doctor</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Session Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="consultation-table-body">
+                        <tr>
+                            <td colspan="5" class="text-center">Loading consultation history...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div>
+            <h3>EMDR Connect</h3>
+            <p>A simple and secure EMDR Therapy Management System for therapists and patients.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>New Delhi, India</p>
+            <p>+91 9876543210</p>
+            <p>support@emdrconnect.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 EMDR Connect. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/patient-dashboard.js"></script>
+</body>
+</html>

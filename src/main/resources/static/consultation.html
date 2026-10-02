@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Room | EMDR Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        .access-banner {
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .access-banner.authorized {
+            background-color: #d1e7dd;
+            border: 1px solid #a3cfbb;
+            color: #0f5132;
+        }
+        .access-banner.denied {
+            background-color: #f8d7da;
+            border: 1px solid #f1aeb5;
+            color: #842029;
+        }
+        .access-banner .info-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .access-banner .info-group i {
+            font-size: 24px;
+        }
+        .video-locked-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            z-index: 10;
+        }
+        .video-locked-overlay i {
+            font-size: 50px;
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container navbar">
+        <div class="logo">
+            <a href="index.html"><i class="fa-solid fa-heart-pulse"></i> EMDR Connect</a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+                <li><a href="consultation.html" class="active">Consultation</a></li>
+                <li><a href="prescription.html">Prescription</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-btn">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-section">
+        <div class="hero-content">
+            <h4>Virtual Therapy Room</h4>
+            <h1>EMDR Consultation & Video Call</h1>
+            <p>
+                Secure and confidential video consultation connected directly with
+                your confirmed appointment. Enable your camera to begin your bilateral EMDR session.
+            </p>
+        </div>
+
+        <div class="hero-image">
+            <img src="images/consultation.png" alt="Consultation">
+        </div>
+    </div>
+</section>
+
+<!-- Access Verification Status Banner -->
+<section style="padding: 20px 0 0 0;">
+    <div class="container">
+        <div id="access-banner" class="access-banner" style="display: none;">
+            <div class="info-group">
+                <i id="access-icon" class="fa-solid fa-circle-check"></i>
+                <div>
+                    <h4 id="access-title" style="margin: 0; font-size: 16px;">Verifying Consultation Access...</h4>
+                    <p id="access-message" style="margin: 3px 0 0 0; font-size: 13px;">Checking appointment status with server.</p>
+                </div>
+            </div>
+            <div id="access-action">
+                <!-- Dynamic return / view buttons -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Video Consultation Section -->
+<section class="video-consultation-section">
+    <div class="container">
+        <div class="video-consultation-card" style="position: relative;">
+            
+            <!-- Locked Overlay when unauthorized -->
+            <div id="locked-overlay" class="video-locked-overlay" style="display: none;">
+                <i class="fa-solid fa-lock"></i>
+                <h3 style="margin-bottom: 8px;">Consultation Room Locked</h3>
+                <p id="locked-reason" style="max-width: 480px; margin-bottom: 20px; font-size: 14px; color: #ddd;">
+                    Consultation requires a confirmed appointment. Please book an appointment or wait for doctor confirmation.
+                </p>
+                <div style="display: flex; gap: 10px;">
+                    <a href="patient-dashboard.html" class="primary-btn" style="background:#0d6efd; border-color:#0d6efd;">
+                        <i class="fa-solid fa-gauge"></i> My Dashboard
+                    </a>
+                    <a href="appointment.html" class="primary-btn" style="background:#198754; border-color:#198754;">
+                        <i class="fa-solid fa-calendar-plus"></i> Book Appointment
+                    </a>
+                </div>
+            </div>
+
+            <div class="video-header">
+                <div>
+                    <span class="video-label">
+                        <i class="fa-solid fa-video"></i>
+                        Online EMDR Session
+                    </span>
+                    <h2 id="session-heading">Live Video Room</h2>
+                    <p id="session-subheading">
+                        Start a secure video session with your assigned EMDR specialist.
+                    </p>
+                </div>
+
+                <div class="camera-status">
+                    <span id="camera-status-dot" class="status-dot"></span>
+                    <span id="camera-status-text">Camera Idle</span>
+                </div>
+            </div>
+
+            <div class="video-screen">
+                <video id="video" autoplay playsinline></video>
+
+                <div id="video-placeholder" class="video-placeholder">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <h3>Ready for Consultation</h3>
+                    <p>Click "Start Camera / Consultation" below to begin video stream.</p>
+                </div>
+
+                <div class="video-badge">
+                    <i class="fa-solid fa-lock"></i>
+                    Encrypted Session
+                </div>
+            </div>
+
+            <div class="video-controls">
+                <button type="button" id="startCamera" class="start-consultation-btn">
+                    <i class="fa-solid fa-video"></i>
+                    Start Consultation
+                </button>
+
+                <button type="button" id="stopCamera" class="stop-consultation-btn" disabled>
+                    <i class="fa-solid fa-video-slash"></i>
+                    Stop Camera
+                </button>
+            </div>
+
+            <div class="video-info">
+                <div>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Secure Consultation</span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Camera Access</span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span id="doctor-info-chip">EMDR Specialist</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Session Documentation & Notes Form -->
+<section class="form-section">
+    <div class="container">
+        <div class="form-container">
+            <div class="heading">
+                <h2>Consultation Notes & Records</h2>
+                <p>Record clinical observations, therapy milestones, and treatment recommendations.</p>
+            </div>
+
+            <form id="consultation-form">
+                <input type="hidden" id="consultation-appointment-id" value="">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="consultation-patient-name">Patient Name</label>
+                        <input type="text" id="consultation-patient-name" placeholder="Patient full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consultation-doctor-name">Doctor / Therapist Name</label>
+                        <input type="text" id="consultation-doctor-name" placeholder="Therapist full name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="consultation-date">Consultation Date</label>
+                        <input type="date" id="consultation-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consultation-time">Consultation Time</label>
+                        <input type="text" id="consultation-time" placeholder="e.g. 10:00 AM" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="consultation-notes">Session Clinical Notes</label>
+                    <textarea id="consultation-notes" rows="5" placeholder="Enter bilateral stimulation notes, progress, and therapy observations..." required></textarea>
+                </div>
+
+                <button type="submit" id="save-consultation-btn" class="primary-btn" style="width: 100%;">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Consultation Record
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div>
+            <h3>EMDR Connect</h3>
+            <p>A secure EMDR Therapy Management System for therapists and patients.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>New Delhi, India</p>
+            <p>+91 9876543210</p>
+            <p>support@emdrconnect.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 EMDR Connect. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/consultation.js"></script>
+
+</body>
+</html>

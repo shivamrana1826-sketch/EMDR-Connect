@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Prescription | EMDR Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="container navbar">
+        <div class="logo">
+            <a href="index.html"><i class="fa-solid fa-heart-pulse"></i> EMDR Connect</a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="prescription.html" class="active">Prescription</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-btn">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-section">
+        <div class="hero-content">
+            <h4>Digital Healthcare</h4>
+            <h1>Prescription & Medical Orders</h1>
+            <p>
+                Create, store, and manage digital prescriptions securely.
+                Ensure patients receive clear medication instructions, dosages,
+                and follow-up guidelines directly in their patient portal.
+            </p>
+        </div>
+
+        <div class="hero-image">
+            <img src="images/prescription.png" alt="Prescription Management">
+        </div>
+    </div>
+</section>
+
+<section class="form-section">
+    <div class="container">
+        <div class="form-container">
+            <div class="heading">
+                <h2>Doctor's Prescription Form</h2>
+                <p>Enter the patient's clinical prescription details below.</p>
+            </div>
+
+            <form id="prescription-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prescription-patient-name">Patient Full Name</label>
+                        <input type="text" id="prescription-patient-name" placeholder="Enter patient name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prescription-patient-email">Patient Account Email</label>
+                        <input type="email" id="prescription-patient-email" placeholder="patient@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prescription-doctor-name">Prescribing Doctor</label>
+                        <input type="text" id="prescription-doctor-name" placeholder="Dr. Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prescription-date">Prescription Date</label>
+                        <input type="date" id="prescription-date" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prescription-medicine">Prescribed Medication(s)</label>
+                        <input type="text" id="prescription-medicine" placeholder="e.g. Sertraline 50mg / Melatonin 3mg" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prescription-dosage">Dosage Frequency</label>
+                        <input type="text" id="prescription-dosage" placeholder="e.g. 1 tablet once daily before bed" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="prescription-instructions">Therapy & Usage Instructions</label>
+                    <textarea id="prescription-instructions" rows="4" placeholder="Enter detailed dosage timing, therapy exercises, follow-up notes, and precautions..." required></textarea>
+                </div>
+
+                <button type="submit" id="save-prescription-btn" class="primary-btn" style="width: 100%;">
+                    <i class="fa-solid fa-file-prescription"></i> Issue & Save Digital Prescription
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="heading">
+            <h2>Prescription Benefits</h2>
+            <p>
+                Digital prescriptions provide clear, accurate guidance and
+                safe record-keeping for both therapists and clients.
+            </p>
+        </div>
+
+        <div class="service-box">
+            <div class="card">
+                <i class="fa-solid fa-pills"></i>
+                <h3>Accurate Dosing</h3>
+                <p>Clear digital records reduce misunderstandings and errors in medication management.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-file-medical"></i>
+                <h3>Patient Portal Access</h3>
+                <p>Prescriptions instantly appear on the patient's personal dashboard for convenient reference.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-bell"></i>
+                <h3>Instant Notifications</h3>
+                <p>Patients are immediately notified as soon as a doctor writes a new prescription.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div>
+            <h3>EMDR Connect</h3>
+            <p>A secure EMDR Therapy Management System for therapists and patients.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>New Delhi, India</p>
+            <p>+91 9876543210</p>
+            <p>support@emdrconnect.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 EMDR Connect. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/prescription.js"></script>
+
+</body>
+</html>

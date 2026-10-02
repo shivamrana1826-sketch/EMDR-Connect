@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors | EMDR Connect</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        .badge-available {
+            display: inline-block;
+            background-color: #198754;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 6px 0;
+        }
+        .badge-unavailable {
+            display: inline-block;
+            background-color: #6c757d;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 6px 0;
+        }
+        .doc-qual {
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+        .doc-exp {
+            color: #0d6efd;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        .card-btn-group {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .card-btn-group a, .card-btn-group button {
+            padding: 8px 14px;
+            font-size: 13px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-view-profile {
+            background-color: #0a192f;
+            color: #fff;
+            transition: all 0.2s;
+        }
+        .btn-view-profile:hover {
+            background-color: #0d6efd;
+        }
+        /* Profile Modal */
+        #profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.65);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-card {
+            background: #fff;
+            width: 90%;
+            max-width: 580px;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-close:hover {
+            color: #000;
+        }
+        .modal-header-flex {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header-flex img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0d6efd;
+        }
+        .modal-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container navbar">
+        <div class="logo">
+            <a href="index.html">
+                <i class="fa-solid fa-heart-pulse"></i> EMDR Connect
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctors.html" class="active">Doctors</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-btn">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-section">
+        <div class="hero-content">
+            <h4>Our Specialists</h4>
+            <h1>Meet Our EMDR Therapy Experts</h1>
+            <p>
+                Our experienced therapists provide professional EMDR
+                treatment for trauma, anxiety, depression and stress
+                management with personalized care.
+            </p>
+        </div>
+
+        <div class="hero-image">
+            <img src="images/doctor-team.png" alt="Doctors">
+        </div>
+    </div>
+</section>
+
+<section class="doctors">
+    <div class="container">
+        <div class="heading">
+            <h2>Our Therapists</h2>
+            <p>Experienced professionals dedicated to supporting your mental health and recovery.</p>
+        </div>
+
+        <!-- Dynamic doctor container populated from MySQL -->
+        <div class="doctor-box" id="doctor-container">
+            <p style="text-align: center; width: 100%; color: #666;">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading specialists from database...
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- View Profile Modal -->
+<div id="profile-modal">
+    <div class="modal-card">
+        <span class="modal-close" id="close-profile-modal">&times;</span>
+        <div class="modal-header-flex">
+            <img id="modal-doc-img" src="images/doctor1.jpg" alt="Doctor Photo">
+            <div>
+                <h2 id="modal-doc-name" style="color: #0a192f; margin-bottom: 5px;">Dr. Raj Patil</h2>
+                <p id="modal-doc-spec" style="color: #0d6efd; font-weight: 500;">Senior EMDR Therapist</p>
+                <div id="modal-doc-avail"></div>
+            </div>
+        </div>
+
+        <div class="modal-details-grid">
+            <div><strong>Qualification:</strong> <span id="modal-doc-qual">MBBS, MD</span></div>
+            <div><strong>Experience:</strong> <span id="modal-doc-exp">10 Years</span></div>
+            <div><strong>Consultation Fee:</strong> <span id="modal-doc-fee">₹1500</span></div>
+            <div><strong>Contact Email:</strong> <span id="modal-doc-email">raj@emdrconnect.com</span></div>
+        </div>
+
+        <h4 style="margin-top: 15px; margin-bottom: 8px; color: #0a192f;">About the Therapist</h4>
+        <p id="modal-doc-bio" style="color: #555; line-height: 1.6; font-size: 14px;">
+            Professional background and therapy approaches.
+        </p>
+
+        <div style="margin-top: 25px; text-align: center;">
+            <a href="appointment.html" id="modal-book-btn" class="primary-btn" style="display: inline-block; padding: 10px 24px;">
+                <i class="fa-solid fa-calendar-check"></i> Book Appointment With This Doctor
+            </a>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <div class="heading">
+            <h2>Why Choose Our Therapists</h2>
+            <p>
+                Our team is dedicated to providing quality EMDR therapy with
+                personalized treatment plans and compassionate care.
+            </p>
+        </div>
+
+        <div class="service-box">
+            <div class="card">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h3>Experienced Team</h3>
+                <p>Qualified therapists with experience in EMDR therapy and mental health treatment.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-heart"></i>
+                <h3>Patient Care</h3>
+                <p>Individual attention and personalized therapy sessions for every patient.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-clock"></i>
+                <h3>Flexible Timing</h3>
+                <p>Book appointments according to your convenient date and time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="container">
+        <div class="heading">
+            <h2>Book Your Appointment</h2>
+            <p>Connect with our EMDR specialists and begin your recovery journey today.</p>
+        </div>
+
+        <div class="text-center">
+            <a href="appointment.html" class="primary-btn">Book Appointment</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div>
+            <h3>EMDR Connect</h3>
+            <p>A simple and secure EMDR Therapy Management System for therapists and patients.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="appointment.html">Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>New Delhi, India</p>
+            <p>+91 9876543210</p>
+            <p>support@emdrconnect.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 EMDR Connect. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/doctors.js"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Management | EMDR Connect Admin</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/forms.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        .doctor-thumb {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #0d6efd;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .badge-active {
+            background-color: #198754;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .badge-inactive {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .badge-available {
+            background-color: #0d6efd;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .badge-busy {
+            background-color: #ffc107;
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            margin: 2px;
+        }
+        .btn-edit {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+        .btn-photo {
+            background-color: #0dcaf0;
+            color: #000;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .btn-edit:hover, .btn-photo:hover, .btn-delete:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+        .image-preview-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        .image-preview-box img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px dashed #0d6efd;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container navbar">
+        <div class="logo">
+            <a href="../index.html">
+                <i class="fa-solid fa-heart-pulse"></i> EMDR Connect
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../doctors.html">Doctors Directory</a></li>
+                <li><a href="doctor-management.html" class="active">Doctor Management</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-btn">
+            <span style="color: #fff; font-weight: 500; margin-right: 15px;">
+                <i class="fa-solid fa-user-shield"></i> Admin
+            </span>
+            <a href="#" id="admin-logout-btn" class="register-btn" style="background:#dc3545;border-color:#dc3545;">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="dashboard">
+    <div class="container">
+        <div class="dashboard-header">
+            <div>
+                <h2>Doctor Management Portal</h2>
+                <p>Add new therapists, update profiles, toggle availability, and manage doctor photos.</p>
+            </div>
+            <a href="#doctor-form-card" class="primary-btn">
+                <i class="fa-solid fa-user-plus"></i> Add New Doctor
+            </a>
+        </div>
+
+        <!-- Top Statistics -->
+        <div class="stats" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 30px;">
+            <div class="stat-card">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h3 id="stat-total-doctors">0</h3>
+                <p>Total Registered Doctors</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-circle-check"></i>
+                <h3 id="stat-active-doctors">0</h3>
+                <p>Active Doctors</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3 id="stat-available-doctors">0</h3>
+                <p>Available Therapists</p>
+            </div>
+        </div>
+
+        <!-- Doctor Directory Table -->
+        <div class="dashboard-card" style="margin-bottom: 40px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                <h3><i class="fa-solid fa-list"></i> Doctor Directory</h3>
+                <button id="refresh-doctors-btn" class="primary-btn" style="padding: 8px 16px; font-size: 14px;">
+                    <i class="fa-solid fa-arrows-rotate"></i> Refresh
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Doctor Name & Email</th>
+                            <th>Specialization & Qualification</th>
+                            <th>Experience</th>
+                            <th>Fee</th>
+                            <th>Status (Click to toggle)</th>
+                            <th>Availability</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="doctors-table-body">
+                        <tr>
+                            <td colspan="8" class="text-center">Loading therapists from database...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add / Edit Doctor Form Card -->
+        <div class="dashboard-card" id="doctor-form-card">
+            <h3 id="form-heading"><i class="fa-solid fa-user-plus"></i> Add New Doctor</h3>
+            <p style="color: #666; margin-bottom: 20px;">
+                Enter doctor details below. A secure login account will be automatically created for the doctor.
+            </p>
+
+            <form id="doctor-form">
+                <input type="hidden" id="doc-id">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Doctor Full Name *</label>
+                        <input type="text" id="doc-name" placeholder="Example: Dr. Priya Sharma" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address (used for login) *</label>
+                        <input type="email" id="doc-email" placeholder="priya@emdrconnect.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Initial Login Password *</label>
+                        <input type="password" id="doc-password" placeholder="Set doctor's login password" minlength="6">
+                        <small style="color:#888;">Leave blank during edit to keep current password.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="doc-phone" placeholder="Enter 10-digit phone number" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Specialization *</label>
+                        <input type="text" id="doc-specialization" placeholder="Example: Senior EMDR Therapist / Clinical Psychologist" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Qualification *</label>
+                        <input type="text" id="doc-qualification" placeholder="Example: MBBS, MD (Psychiatry) / Ph.D." required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Experience (Years) *</label>
+                        <input type="number" id="doc-experience" placeholder="Years of experience" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Consultation Fee (INR)</label>
+                        <input type="number" id="doc-fee" placeholder="Fee per session (e.g. 1500)" min="0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Active Status</label>
+                        <select id="doc-active">
+                            <option value="true">Active (Visible to patients)</option>
+                            <option value="false">Inactive (Hidden)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Availability for Booking</label>
+                        <select id="doc-available">
+                            <option value="true">Available</option>
+                            <option value="false">Unavailable</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Short Biography</label>
+                    <textarea id="doc-biography" rows="4" placeholder="Brief professional background, therapy approach, and experience..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Profile Image Upload</label>
+                    <input type="file" id="doc-photo" accept="image/*">
+                    <div class="image-preview-box">
+                        <img id="doc-preview-img" src="../images/doctor1.jpg" alt="Preview">
+                        <span style="font-size: 13px; color: #666;" id="preview-text">Choose an image from your device or reuse default photo.</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" id="save-doctor-btn" class="primary-btn">
+                        <i class="fa-solid fa-save"></i> Save Doctor
+                    </button>
+                    <button type="button" id="reset-doctor-btn" class="primary-btn" style="background:#6c757d; border-color:#6c757d;">
+                        <i class="fa-solid fa-xmark"></i> Cancel / Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Dedicated Photo Upload Modal -->
+<div id="photo-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+    <div class="card" style="max-width:460px; width:90%; background:#fff; padding:25px; border-radius:12px; margin:auto; margin-top:100px;">
+        <h3 id="photo-modal-title" style="margin-bottom:15px;"><i class="fa-solid fa-camera"></i> Change Doctor Photo</h3>
+        <p id="photo-modal-subtitle" style="font-size:14px; color:#555; margin-bottom:15px;">Upload a new image for the selected doctor.</p>
+        <form id="photo-upload-form">
+            <input type="hidden" id="photo-doctor-id">
+            <div class="form-group">
+                <input type="file" id="photo-file-input" accept="image/*" required>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:15px;">
+                <button type="button" id="photo-modal-cancel" class="btn-sm" style="background:#6c757d; color:#fff; padding:8px 16px;">Cancel</button>
+                <button type="submit" class="btn-sm" style="background:#0d6efd; color:#fff; padding:8px 16px;"><i class="fa-solid fa-upload"></i> Upload</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <div class="container footer-content">
+        <div>
+            <h3>EMDR Connect</h3>
+            <p>A simple and secure EMDR Therapy Management System for therapists and patients.</p>
+        </div>
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../doctors.html">Doctors</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Contact</h3>
+            <p>New Delhi, India</p>
+            <p>+91 9876543210</p>
+            <p>support@emdrconnect.com</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 EMDR Connect. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="../js/api.js"></script>
+<script src="../js/main.js"></script>
+<script src="js/doctor-management.js"></script>
+</body>
+</html>

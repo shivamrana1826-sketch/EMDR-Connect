@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | EMDR Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="container navbar">
+        <div class="logo">
+            <a href="index.html"><i class="fa-solid fa-heart-pulse"></i> EMDR Connect</a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="appointment.html" class="active">Book Appointment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-btn">
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-section">
+        <div class="hero-content">
+            <h4>Book Your Session</h4>
+            <h1>EMDR Therapy Appointment</h1>
+            <p>
+                Complete the form below to schedule your confidential therapy session.
+                Our certified EMDR therapists will review and confirm your appointment.
+            </p>
+        </div>
+
+        <div class="hero-image">
+            <img src="images/appointment.png" alt="Appointment Booking">
+        </div>
+    </div>
+</section>
+
+<section class="form-section">
+    <div class="container">
+        <div class="form-container">
+            <div class="heading">
+                <h2>Appointment Form</h2>
+                <p>Fill in the required information to reserve your therapy consultation.</p>
+            </div>
+
+            <form id="appointment-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="patient-name-input">Full Name</label>
+                        <input type="text" id="patient-name-input" placeholder="Enter full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patient-email-input">Email Address</label>
+                        <input type="email" id="patient-email-input" placeholder="Enter email address" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="patient-phone-input">Phone Number</label>
+                        <input type="tel" id="patient-phone-input" placeholder="Enter 10-digit phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="doctor-select">Select Doctor / Therapist</label>
+                        <select id="doctor-select" required>
+                            <option value="">Loading available therapists...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="appointment-date-input">Appointment Date</label>
+                        <input type="date" id="appointment-date-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appointment-time-input">Appointment Time</label>
+                        <select id="appointment-time-input" required>
+                            <option value="">Choose Time Slot</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                            <option value="06:00 PM">06:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointment-reason-input">Reason For Visit / Therapy Goals</label>
+                    <textarea id="appointment-reason-input" rows="4" placeholder="Briefly describe your symptoms or therapy goals..." required></textarea>
+                </div>
+
+                <button type="submit" id="submit-appointment-btn" class="primary-btn" style="width: 100%;">
+                    <i class="fa-solid fa-calendar-check"></i> Confirm & Book Appointment
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="heading">
+            <h2>Why Book With Us?</h2>
+            <p>
+                We provide professional EMDR therapy with experienced therapists
+                in a secure, HIPAA-compliant, and supportive environment.
+            </p>
+        </div>
+
+        <div class="service-box">
+            <div class="card">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h3>Certified Therapists</h3>
+                <p>Receive treatment from accredited EMDR therapy practitioners.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3>Direct Doctor Review</h3>
+                <p>Appointments are directly confirmed by your selected specialist.</p>
+            </div>
+
+            <div class="card">
+                <i class="fa-solid fa-video"></i>
+                <h3>Secure Online Sessions</h3>
+                <p>Join virtual EMDR consultations right from your personal dashboard.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container footer-content">
+        <div>
+            <h3>EMDR Connect</h3>
+            <p>A secure EMDR Therapy Management System for therapists and patients.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>New Delhi, India</p>
+            <p>+91 9876543210</p>
+            <p>support@emdrconnect.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 EMDR Connect. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/appointment.js"></script>
+
+</body>
+</html>
